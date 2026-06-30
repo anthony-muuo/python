@@ -12,12 +12,18 @@ screen.tracer(0)
 
 snake = Snake()
 
+# controlling the snake
+screen.onkey(snake.up, "Up")
+screen.onkey(snake.down, "Down")
+screen.onkey(snake.right, "Right")
+screen.onkey(snake.left, "Left")
+
 game_is_on = True
 
 while game_is_on:
     # show what happened when the screen was off
     screen.update()
-    time.sleep(0.1)
+    time.sleep(0.15)
 
     snake.move()
 
