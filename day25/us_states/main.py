@@ -29,20 +29,21 @@ data = pandas.read_csv("./50_states.csv")
 
 while score < 50:
     state = screen.textinput(title=f"{score} / 50 States correct",  prompt="What's another states name? ").title()
-
+    # save the unguessed states in a new csv called states_to_learn.csv
     if state == 'Exit':
-        # save the unguessed states in a new csv called states_to_learn.csv
-        missing_states = []
-        for each_state in data.state.to_list():
-            if each_state not in correct_guesses:
-                # mean it is missing
-                missing_states.append(each_state)
+    #     missing_states = []
+    #     for each_state in data.state.to_list():
+    #         if each_state not in correct_guesses:
+    #             # mean it is missing
+    #             missing_states.append(each_state)
+
+    # now fix above with list comprehension learnt in day 26
+        missing_states = [each_state for each_state in data.state.to_list() if each_state not in correct_guesses]
 
         # print(missing_states)
         new_df = pandas.DataFrame(missing_states)
         new_df.to_csv("states_to_learn.csv")
         break
-
 
     # check if state is among the all 50 states in csv
     if state in data.state.values and state not in correct_guesses:
